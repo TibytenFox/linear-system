@@ -60,14 +60,14 @@ Matrix *MatrixClone(Matrix *matrix) {
 
 double MatrixGet(Matrix *matrix, int index1, int index2) {
     if (index1 < 0 || index1 >= matrix->rows || index2 < 0 || index2 >= matrix->cols) {
-        return 0.0; // or handle error as needed
+        return 0.0; // или обработать ошибку по необходимости
     }
     return matrix->data[index1][index2];
 }
 
 int MatrixSet(Matrix *matrix, int index1, int index2, double value) {
     if (index1 < 0 || index1 >= matrix->rows || index2 < 0 || index2 >= matrix->cols) {
-        return -1; // or handle error as needed
+        return -1; // или обработать ошибку по необходимости
     }
     matrix->data[index1][index2] = value;
     return 0;
@@ -75,7 +75,7 @@ int MatrixSet(Matrix *matrix, int index1, int index2, double value) {
 
 void MatrixSwapRows(Matrix *matrix, int row1, int row2) {
     if (row1 < 0 || row1 >= matrix->rows || row2 < 0 || row2 >= matrix->rows) {
-        return; // or handle error as needed
+        return; // или обработать ошибку по необходимости
     }
     double *temp = matrix->data[row1];
     matrix->data[row1] = matrix->data[row2];

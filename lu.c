@@ -20,7 +20,7 @@ LU *LUDecomposition(Matrix *A) {
         if (pivot == 0) {
             MatrixDelete(L);
             MatrixDelete(U);
-            return NULL; // Singular matrix
+            return NULL; // Вырожденная матрица
         }
 
         for (int j = i + 1; j < n; j++) {
@@ -65,7 +65,7 @@ Vector *LUSolve(LU *lu, Vector *b) {
         return NULL;
     }
 
-    // Forward substitution to solve Ly = b
+    // Прямая подстановка для решения Ly = b
     for (int i = 0; i < n; i++) {
         double sum = 0.0;
         for (int j = 0; j < i; j++) {
@@ -74,7 +74,7 @@ Vector *LUSolve(LU *lu, Vector *b) {
         VectorSet(y, i, (VectorGet(b, i) - sum) / MatrixGet(L, i, i));
     }
 
-    // Backward substitution to solve Ux = y
+    // Обратная подстановка для решения Ux = y
     for (int i = n - 1; i >= 0; i--) {
         double sum = 0.0;
         for (int j = i + 1; j < n; j++) {

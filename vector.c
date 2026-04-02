@@ -42,14 +42,14 @@ Vector *VectorClone(Vector *vector) {
 
 double VectorGet(Vector *vector, int index) {
     if (index < 0 || index >= vector->size) {
-        return 0.0; // or handle error as needed
+        return 0.0; // или обработать ошибку по необходимости
     }
     return vector->data[index];
 }
 
 int VectorSet(Vector *vector, int index, double value) {
     if (index < 0 || index >= vector->size) {
-        return -1; // or handle error as needed
+        return -1; // или обработать ошибку по необходимости
     }
     vector->data[index] = value;
     return 0;
@@ -57,7 +57,7 @@ int VectorSet(Vector *vector, int index, double value) {
 
 void VectorSwap(Vector *vector, int index1, int index2) {
     if (index1 < 0 || index1 >= vector->size || index2 < 0 || index2 >= vector->size) {
-        return; // or handle error as needed
+        return; // или обработать ошибку по необходимости
     }
     double temp = vector->data[index1];
     vector->data[index1] = vector->data[index2];

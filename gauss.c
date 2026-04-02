@@ -7,7 +7,7 @@ static void TransformToUpper(Matrix *A, Vector *b) {
 
     for (int i = 0; i < n; i++) {
         double pivot = MatrixGet(A, i, i);
-        if (pivot == 0) return; // no unique solution
+        if (pivot == 0) return; // нет единственного решения
 
         for (int j = i + 1; j < n; j++) {
             double factor = MatrixGet(A, j, i) / pivot;
@@ -32,7 +32,7 @@ static Vector *BackSubstitution(Matrix *A, Vector *b) {
         double pivot = MatrixGet(A, i, i);
         if (pivot == 0) {
             VectorDelete(x);
-            return NULL; // no unique solution
+            return NULL; // нет единственного решения
         }
         VectorSet(x, i, sum / pivot);
     }

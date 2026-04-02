@@ -35,12 +35,12 @@ static void Test(int n) {
     end_lu_solve = clock();
 
     printf("\n------------------------------\n");
-    printf("Size: %d\n", n);
-    printf("Gauss Elimination Time: %f seconds\n", (double)(end_gauss - start_gauss) / CLOCKS_PER_SEC);
-    printf("Gauss Elimination with Pivoting Time: %f seconds\n", (double)(end_pivot - start_pivot) / CLOCKS_PER_SEC);
-    printf("LU Decomposition Time: %f seconds\n", (double)(end_lu - start_lu) / CLOCKS_PER_SEC);
-    printf("LU Solve Time: %f seconds\n", (double)(end_lu_solve - start_lu_solve) / CLOCKS_PER_SEC);
-    printf("LU Decomposition + Solve Time: %f seconds\n", (double)(end_lu - start_lu + end_lu_solve - start_lu_solve) / CLOCKS_PER_SEC);
+    printf("Размер: %d\n", n);
+    printf("Время метода Гаусса: %f секунд\n", (double)(end_gauss - start_gauss) / CLOCKS_PER_SEC);
+    printf("Время метода Гаусса с выбором главного элемента: %f секунд\n", (double)(end_pivot - start_pivot) / CLOCKS_PER_SEC);
+    printf("Время LU-разложения: %f секунд\n", (double)(end_lu - start_lu) / CLOCKS_PER_SEC);
+    printf("Время решения через LU: %f секунд\n", (double)(end_lu_solve - start_lu_solve) / CLOCKS_PER_SEC);
+    printf("Время LU-разложения и решения: %f секунд\n", (double)(end_lu - start_lu + end_lu_solve - start_lu_solve) / CLOCKS_PER_SEC);
     printf("\n------------------------------\n");
 
     MatrixDelete(A);
@@ -86,10 +86,10 @@ static void MultipleTests(int k) {
     end_lu = clock();
 
     printf("\n------------------------------\n");
-    printf("Multiple Tests (k=%d)\n", k);
-    printf("Gauss Elimination Total Time: %f seconds\n", (double)(end_gauss - start_gauss) / CLOCKS_PER_SEC);
-    printf("Gauss Elimination with Pivoting Total Time: %f seconds\n", (double)(end_pivot - start_pivot) / CLOCKS_PER_SEC);
-    printf("LU Decomposition + Solve Total Time: %f seconds\n", (double)(end_lu - start_lu) / CLOCKS_PER_SEC);
+    printf("Множественные тесты (k=%d)\n", k);
+    printf("Общее время метода Гаусса: %f секунд\n", (double)(end_gauss - start_gauss) / CLOCKS_PER_SEC);
+    printf("Общее время метода Гаусса с выбором: %f секунд\n", (double)(end_pivot - start_pivot) / CLOCKS_PER_SEC);
+    printf("Общее время LU-разложения и решения: %f секунд\n", (double)(end_lu - start_lu) / CLOCKS_PER_SEC);
     printf("\n------------------------------\n");
 
     MatrixDelete(A);
@@ -112,12 +112,12 @@ static void PrintMenu() {
 
 static int ChooseSeed() {
     char choice;
-    printf("Fix seed? (Y/N): ");
+    printf("Зафиксировать seed? (Y/N): ");
     scanf(" %c", &choice);
 
     if (choice == 'Y' || choice == 'y') {
         time_t seed;
-        printf("Your seed: ");
+        printf("Ваш seed: ");
         scanf("%ld", &seed);
         srand(seed);
     } else if (choice == 'N' || choice == 'n') {
@@ -125,7 +125,7 @@ static int ChooseSeed() {
         printf("Seed: %ld\n", seed);
         srand(seed);
     } else {
-        printf("Invalid choice. Exiting.\n");
+        printf("Неверный выбор. Выход.\n");
         return 1;
     }
 
@@ -190,10 +190,10 @@ static void TestHilbert(int n) {
     double residual_lu = CalculateResidual(A, x_lu, b);
 
     printf("\n------------------------------\n");
-    printf("Size: %d\n", n);
-    printf("Gauss Elimination Relative error: %e\tResidual: %e\n", re_gauss, residual_gauss);
-    printf("Gauss Elimination with Pivoting error: %e\tResidual: %e\n", re_gauss_pivot, residual_gauss_pivot);
-    printf("LU Decomposition + Solve error: %e\tResidual: %e\n", re_lu, residual_lu);
+    printf("Размер: %d\n", n);
+    printf("Метод Гаусса: относительная погрешность: %e\tНевзяка: %e\n", re_gauss, residual_gauss);
+    printf("Метод Гаусса с выбором: относительная погрешность: %e\tНевязка: %e\n", re_gauss_pivot, residual_gauss_pivot);
+    printf("LU-разложение и решение: относительная погрешность: %e\tНевязка: %e\n", re_lu, residual_lu);
     printf("\n------------------------------\n");
 
     MatrixDelete(A);
@@ -240,7 +240,7 @@ int main() {
         }
         default:
         {
-            printf("Invalid choice. Exiting.\n");
+            printf("Неверный выбор. Выход.\n");
             return 1;
         }
     }
