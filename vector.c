@@ -14,6 +14,10 @@ Vector *VectorInit(int size) {
         return NULL;
     }
 
+    for (int i = 0; i < size; i++) {
+        result->data[i] = 0.0;
+    }
+
     result->size = size;
     return result;
 }
@@ -58,6 +62,14 @@ void VectorSwap(Vector *vector, int index1, int index2) {
     double temp = vector->data[index1];
     vector->data[index1] = vector->data[index2];
     vector->data[index2] = temp;
+}
+
+void VectorSubstract(Vector *vector1, Vector *vector2) {
+    if (vector1->size != vector2->size) return;
+
+    for (int i = 0; i < vector1->size; i++) {
+        VectorSet(vector1, i, VectorGet(vector1, i) - VectorGet(vector2, i));
+    }
 }
 
 void VectorPrint(Vector *vector) {

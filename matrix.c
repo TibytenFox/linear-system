@@ -24,6 +24,12 @@ Matrix *MatrixInit(int rows, int cols) {
         }
     }
 
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result->data[i][j] = 0.0;
+        }
+    }
+
     result->rows = rows;
     result->cols = cols;
     return result;
@@ -74,6 +80,23 @@ void MatrixSwapRows(Matrix *matrix, int row1, int row2) {
     double *temp = matrix->data[row1];
     matrix->data[row1] = matrix->data[row2];
     matrix->data[row2] = temp;
+}
+
+Vector *MatrixMultiplyVector(Matrix *matrix, Vector *vector) {
+    if (matrix->cols != vector->size) return NULL;
+
+    Vector *result = VectorInit(matrix->rows);
+    if (result == NULL) return NULL;
+
+    for (int i = 0; i < matrix->rows; i++) {
+        double sum = 0.0;
+        for (int j = 0; j < matrix->cols; j++) {
+            sum += MatrixGet(matrix, i, j) * VectorGet(vector, j);
+        }
+        VectorSet(result, i, sum);
+    }
+
+    return result;
 }
 
 void MatrixPrint(Matrix *matrix) {
